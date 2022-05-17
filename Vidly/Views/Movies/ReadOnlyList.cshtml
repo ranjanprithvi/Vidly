@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Vidly.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Movies</h2>
+
+<table id="movies" class="table table-bordered table-hover table-condensed" cellpadding="10"/>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        title: "Movie",
+                        data: "name",
+                    },
+                    {
+                        title: "Genre",
+                        data: "genre.name"
+                    }
+                ]
+            });
+        });
+    </script>
+}
